@@ -1,4 +1,8 @@
 function [dist,xy] = genDistEuclidean(n,K,m,cc)
+	% K: maximum size of each cluster
+	% m: width of each cluster
+	% cc: maximum value for cluster centre
+
     kk = randi(K);
     
     xy = -ones(n,2);
@@ -15,6 +19,7 @@ function [dist,xy] = genDistEuclidean(n,K,m,cc)
             cx = rand * cc;
             cy = rand * cc;
             numclust = 0;
+			kk = randi(K);
         end
         
         numel = numel + 1;
