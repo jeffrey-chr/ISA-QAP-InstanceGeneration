@@ -1,7 +1,8 @@
-function [flow, xy] = genFlowStructured(n,d,a,b)
+function [flow, xy] = genFlowStructured(n,d,b)
 %GENFLOWSTRUCTURED Summary of this function goes here
 %   Detailed explanation goes here
 flow = -ones(n);
+a = 100^(1/b);
 
 xy = rand(n,2)*100;
 

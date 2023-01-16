@@ -1,5 +1,5 @@
 # Instances generated - put them in the Instances submodule to be used later
-Generators/StuFer/output/
+*.dat
 
 # Config text file
 linkdir.txt

@@ -20,30 +20,24 @@ outputDir = ".\output\";
 %                 500, '500', 10, 20; 
 %             };
 
-instSizes = {   50, '50', 1, 5;
-                150, '150', 3, 10;
-                300, '300', 6, 15;
+instSizes = 60:20:200;
+
+recDims = [4, 10];
+  
+distGens  = {   @(n) genDistEuclidean(n,ceil(n/(rand*13+2)),rand*30+20,300), 'e'; % Random distances
+                @(n) genDistManhattan(n,recDims(randi(2))), 'm';         % Grid distances
             };
         
-distGens  = {   @(n) genDistEuclidean(n,n/2,20,300), 'ra'; % Random distances, tight clustering
-                @(n) genDistEuclidean(n,n/2,50,300), 'rb'; % Random distances, loose clustering
-                @(n) genDistManhattan(n,n/25), 'ga';         % Grid distances, narrow grid
-                @(n) genDistManhattan(n,n/10), 'gb';         % Grid distances, broad grid      
+flowGens  = {   @(n) genFlowRandom(n,rand*0.6+0.2,rand*6+1), 'r'; % Random flows
+                @(n) genFlowStructured(n,rand*40+10,rand*6+1), 's'; % Structured flows
+                @(n) genFlowStructuredPlus(n,rand*40+10,rand*6+1,0.05), 'p'; % Structured Plus flows
             };
         
-flowGens  = {   @(n) genFlowRandom(n,rand*0.3+0.2,100,1), 'ra'; % Random flows, low sparcity 
-                @(n) genFlowRandom(n,rand*0.3+0.5,100,1), 'rb'; % Random flows, high sparcity
-                @(n) genFlowStructured(n,50,100,1), 'sa'; % Structured flows, low sparcity
-                @(n) genFlowStructured(n,25,100,1), 'sb'; % Structured flows, high sparcity
-                @(n) genFlowStructuredPlus(n,50,100,1,0.05), 'pa'; % Structured Plus flows, low sparcity
-                @(n) genFlowStructuredPlus(n,25,100,1,0.05), 'pb'; % Structured Plus flows, high sparcity
-            };
-        
-for i = 1:size(instSizes,1)
+for i = 1:length(instSizes)
     for j = 1:size(distGens,1)
         for k = 1:size(flowGens,1)
-            for count = 1:2
-                n = instSizes{i,1};
+            for count = 1:10
+                n = instSizes(i);
                 dist = distGens{j,1}(n);
                 flow = flowGens{k,1}(n);
                 name = strcat('stf',num2str(n),distGens{j,2},flowGens{k,2},num2str(count));

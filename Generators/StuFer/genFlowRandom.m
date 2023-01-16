@@ -1,7 +1,8 @@
-function [flow] = genFlowRandom(n,sp,a,b)
+function [flow] = genFlowRandom(n,sp,b)
 %GENFLOWRANDOM Summary of this function goes here
 %   Detailed explanation goes here
 flow = -ones(n);
+a = 100^(1/b);
 
 for i = 1:n
     for j = 1:n
