@@ -1,3 +1,5 @@
+%Generate new instances with independent uniformly random distributions.
+
 if ~exist('qap_writeFile','file')
     ufid = fopen('..\..\linkdir.txt','r');
     uline = fgetl(ufid);

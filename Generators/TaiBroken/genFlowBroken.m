@@ -55,12 +55,14 @@ function flow = genFlowBroken(b, rd, symm)
             if ii == jj
                 for x = xstart:xend
                     for y = ystart:yend
-                        flow(x,y) = randi(20);
-                        if symm
-                            flow(y,x) = randi(20);
-                        else
-                            flow(y,x) = flow(x,y);
-                        end
+						if x > y
+							flow(x,y) = randi(20);
+							if symm
+								flow(y,x) = randi(20);
+							else
+								flow(y,x) = flow(x,y);
+							end
+						end
                     end
                 end
             else
