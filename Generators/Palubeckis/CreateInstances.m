@@ -20,12 +20,12 @@ outputDir = ".\output\";
 %                 500, '500', 10, 20; 
 %             };
 
-instSizes = 80;
+instSizes = 60:20:120;
 
 
         
 for i = 1:length(instSizes)
-    for count = 1:1
+    for count = 1:10
         n = instSizes(i);
         nx = 7;
         ny = 7;

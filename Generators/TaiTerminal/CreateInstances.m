@@ -24,11 +24,11 @@ infproxy1 = @(base, n) base * 2 * n + randi(floor(base)/2);
 %infproxy1 = @(base, n) base * 4 + randi(floor(base)/2);
 randdens1 = @(n) floor(randi(n) + n/2);
 
-instTypes = { %[5,3,3], 20, infproxy1, randdens1, true;
-              [5,5,3], 20, infproxy1, randdens1, true;
-              [5,5,5], 20, infproxy1, randdens1, true;
-              [7,5,5], 20, infproxy1, randdens1, true;
-              [3,5,7], 20, infproxy1, randdens1, true;
+instTypes = { [5,3,3], 10, infproxy1, randdens1, true;
+              [5,5,3], 10, infproxy1, randdens1, true;
+              [5,5,5], 10, infproxy1, randdens1, true;
+              %[7,5,5], 10, infproxy1, randdens1, true;
+              [3,5,7], 10, infproxy1, randdens1, true;
             };
         
 for i = 1:size(instTypes,1)

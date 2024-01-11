@@ -20,7 +20,7 @@ outputDir = ".\output\";
 %                 500, '500', 10, 20; 
 %             };
 
-instSizes = 60:20:200;
+instSizes = 60:20:120;
 
 recDims = [4, 10];
   
@@ -36,7 +36,7 @@ flowGens  = {   @(n) genFlowRandom(n,rand*0.6+0.2,rand*6+1), 'r'; % Random flows
 for i = 1:length(instSizes)
     for j = 1:size(distGens,1)
         for k = 1:size(flowGens,1)
-            for count = 1:10
+            for count = 1:5
                 n = instSizes(i);
                 dist = distGens{j,1}(n);
                 flow = flowGens{k,1}(n);

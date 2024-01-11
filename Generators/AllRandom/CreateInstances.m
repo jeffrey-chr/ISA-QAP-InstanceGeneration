@@ -28,8 +28,8 @@ randdens1 = @(n) floor(randi(n) + n/2);
 
 req1 = struct;
 req1.name = "xran%dS1";
-req1.size = @(i) 50+(i-1)*5;
-req1.count = 30;
+req1.size = @(i) 30+(i-1)*5;
+req1.count = 20;
 req1.params = struct;
 req1.params.symm = true;
 

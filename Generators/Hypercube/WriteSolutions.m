@@ -10,11 +10,11 @@ if ~exist('qap_writeFile','file')
     error('Failed to load utilities');
 end
 
-prefix = "hyp125_";
-dim = 3;
-len = 5;
+prefix = "hyp64_";
+dim = 6;
+len = 2;
 
-for i = 1:20
+for i = 1:8
     datafile = strcat("./output/",prefix,num2str(i),".dat");
     solfile = strcat("./slnoutput/",prefix,num2str(i),".sln");
     %solfile = 1;
