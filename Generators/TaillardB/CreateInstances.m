@@ -11,6 +11,7 @@ if ~exist('qap_writeFile','file')
 end
 
 outputDir = ".\output\";
+descDir = ".\description\";
 
 % instSizes = {   50, '50', 1, 5;
 %                 100, '100', 2, 10;
@@ -24,10 +25,13 @@ infproxy1 = @(base, n) base * 2 * n + randi(floor(base)/2);
 %infproxy1 = @(base, n) base * 4 + randi(floor(base)/2);
 randdens1 = @(n) floor(randi(n) + n/2);
 
+repeats = 2;
+
 req1 = struct;
-req1.name = "xtab%dN2";
-req1.size = @(i) 30+(i-1)*5;
-req1.count = 20;
+req1.name = "xtab%dN%d";
+req1.size = @(i) 30+(ceil(i/repeats)-1)*5;
+req1.id = @(i) rem(i-1,repeats)+1;
+req1.count = 20*repeats;
 req1.params = struct;
 req1.params.M = 1000;
 req1.params.tilt = 0;
@@ -35,7 +39,7 @@ req1.params.tilt = 0;
 req1.params.B = 5;
 
 req2 = req1;
-req2.name = "xtab%dT2";
+req2.name = "xtab%dT%d";
 req2.params.tilt = 0.1;
 
 reqs = { req1, req2 };
@@ -52,7 +56,19 @@ for i = 1:length(reqs)
         param.A = rand*-15;
         dist = genDistTaiB(param);
         flow = genFlowTaiB(param);
-        name = sprintf(req.name,n);
+        name = sprintf(req.name,n,req.id(count));
         qap_writeFile(strcat(outputDir,name,".dat"),dist,flow);
+
+        description = strcat("InstanceType,TaiBGenerator\nInstanceSize,",num2str(n), ...
+            "\nOverallRadius,",num2str(param.M,10), ...
+            "\nMaximumCluster,",num2str(param.K,10), ...
+            "\nClusterRadius,",num2str(param.mu,10), ...
+            "\nTilt,",num2str(param.tilt,10), ...
+            "\nFlowBParam,", num2str(param.B,10), ...
+            "\nFlowAParam,", num2str(param.A,10), ...
+            "\n");
+        fid = fopen(strcat(descDir,name,".csv"),'w');
+        fprintf(fid, description);
+        fclose(fid);
     end
 end

@@ -13,6 +13,7 @@ if ~exist('qap_writeFile','file')
 end
 
 outputDir = ".\output\";
+descDir = ".\description\";
 
 % instTypes = { %[5,3,3], 20, infproxy1, randdens1, true;
 %               %[2,6], 20;
@@ -41,5 +42,15 @@ for i = 1:size(instTypes,1)
         flow = genFlowHypercube(l, d, 20, g);
         name = strcat('hyp',num2str(n),'_',num2str(count));
         qap_writeFile(strcat(outputDir,name,".dat"),dist,flow);
+
+        description = strcat("InstanceType,Hypercube\nInstanceSize,",num2str(n), ...
+            "\nSideLength,",num2str(l), ...
+            "\nCubeDimension,",num2str(d), ...
+            "\nBaseDistance,",num2str(20), ...
+            "\nBaseFlow,",num2str(20), ...
+            "\n");
+        fid = fopen(strcat(descDir,name,".csv"),'w');
+        fprintf(fid, description);
+        fclose(fid);
     end
 end

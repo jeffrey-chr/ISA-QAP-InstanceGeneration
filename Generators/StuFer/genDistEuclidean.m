@@ -1,4 +1,4 @@
-function [dist,xy] = genDistEuclidean(n,K,m,cc)
+function [dist,xy,description] = genDistEuclidean(n,K,m,cc)
 	% K: maximum size of each cluster
 	% m: width of each cluster
 	% cc: maximum value for cluster centre
@@ -36,5 +36,7 @@ function [dist,xy] = genDistEuclidean(n,K,m,cc)
 
     % Round the distances
     dist = round(dist);
+
+    description = strcat("DistanceType,Euclidean\nMaximumCluster,",num2str(K,10),"\nClusterWidth,",num2str(m,10),"\nClusterCentreLoc,",num2str(cc),"\n");
 end
 

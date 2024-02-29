@@ -1,4 +1,4 @@
-function [flow, xy] = genFlowStructured(n,d,b)
+function [flow, xy,description] = genFlowStructured(n,d,b)
 %GENFLOWSTRUCTURED Summary of this function goes here
 %   Detailed explanation goes here
 flow = -ones(n);
@@ -20,6 +20,8 @@ for i = 1:n
         end
     end
 end
+
+description = strcat("FlowType,Structured\nZeroThreshold,",num2str(d,10),"\nExponent,",num2str(b,10),"\n");
 
 end
 

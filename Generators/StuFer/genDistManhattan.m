@@ -1,4 +1,4 @@
-function [dist,xy] = genDistManhattan(n,A)
+function [dist,xy,description] = genDistManhattan(n,A)
 
     xy = -ones(n,2);
     dist = -ones(n);
@@ -22,6 +22,8 @@ function [dist,xy] = genDistManhattan(n,A)
             dist(i,j) = norm(xy(i,:)-xy(j,:),1);
         end
     end
+
+    description = strcat("DistanceType,Manhattan\nRectangleDim,",num2str(A,10),"\n");
 
 end
 

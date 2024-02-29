@@ -1,8 +1,9 @@
-function [flow] = genFlowRandom(n,sp,b)
+function [flow,xy,description] = genFlowRandom(n,sp,b)
 %GENFLOWRANDOM Summary of this function goes here
 %   Detailed explanation goes here
 flow = -ones(n);
 a = 100^(1/b);
+xy = [];
 
 for i = 1:n
     for j = 1:n
@@ -18,6 +19,8 @@ for i = 1:n
             end
         end
     end
+
+    description = strcat("FlowType,Random\nZeroProbability,",num2str(sp,10),"\nExponent,",num2str(b,10),"\n");
 end
 
 
