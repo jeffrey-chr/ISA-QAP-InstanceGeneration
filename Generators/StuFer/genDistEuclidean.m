@@ -37,6 +37,11 @@ function [dist,xy,description] = genDistEuclidean(n,K,m,cc)
     % Round the distances
     dist = round(dist);
 
-    description = strcat("DistanceType,Euclidean\nMaximumCluster,",num2str(K,10),"\nClusterWidth,",num2str(m,10),"\nClusterCentreLoc,",num2str(cc),"\n");
+    xstring = sprintf('%f,',xy(:,1));
+    ystring = sprintf('%f,',xy(:,2));
+    description = strcat("DistanceType,Euclidean\nMaximumCluster,",num2str(K,10),"\nClusterWidth,",num2str(m,10),"\nClusterCentreLoc,",num2str(cc), ...
+        "\nXCoords,", extractBefore(xstring, length(xstring)), ...
+        "\nYCoords,", extractBefore(ystring, length(ystring)), ...
+        "\n");
 end
 

@@ -1,4 +1,4 @@
-function dist = genDistTaiB(params)
+function [dist,points] = genDistTaiB(params)
 %GENDIST Summary of this function goes here
 %   Detailed explanation goes here
     if nargin < 5

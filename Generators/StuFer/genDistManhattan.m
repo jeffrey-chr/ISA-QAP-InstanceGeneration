@@ -23,7 +23,12 @@ function [dist,xy,description] = genDistManhattan(n,A)
         end
     end
 
-    description = strcat("DistanceType,Manhattan\nRectangleDim,",num2str(A,10),"\n");
+    xstring = sprintf('%f,',xy(:,1));
+    ystring = sprintf('%f,',xy(:,2));
+    description = strcat("DistanceType,Manhattan\nRectangleDim,",num2str(A,10), ...
+        "\nXCoords,", extractBefore(xstring, length(xstring)), ...
+        "\nYCoords,", extractBefore(ystring, length(ystring)), ...
+        "\n");
 
 end
 

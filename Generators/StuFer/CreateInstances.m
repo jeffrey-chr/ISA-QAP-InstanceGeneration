@@ -34,19 +34,19 @@ flowGens  = {   @(n) genFlowRandom(n,rand*0.6+0.2,rand*6+1), 'r'; % Random flows
                 @(n) genFlowStructuredPlus(n,rand*40+10,rand*6+1,0.05), 'p'; % Structured Plus flows
             };
         
-initdesc = strcat("InstanceType,StuFerGenerator\nInstanceSize,",num2str(n),"\n");
+initdesc = strcat("InstanceType,StuFerGenerator\n");
 
 for i = 1:length(instSizes)
     for j = 1:size(distGens,1)
         for k = 1:size(flowGens,1)
-            for count = 1:5
+            for count = 1:15
                 n = instSizes(i);
+                ndesc = strcat("InstanceSize,",num2str(n),"\n");
                 [dist,~,ddesc] = distGens{j,1}(n);
                 [flow,~,fdesc] = flowGens{k,1}(n);
                 name = strcat('stf',num2str(n),distGens{j,2},flowGens{k,2},num2str(count));
                 qap_writeFile(strcat(outputDir,name,".dat"),dist,flow);
-                
-                description = strcat(initdesc,ddesc,fdesc);
+                description = strcat(initdesc,ndesc,ddesc,fdesc);
                 fid = fopen(strcat(descDir,name,".csv"),'w');
                 fprintf(fid, description);
                 fclose(fid);

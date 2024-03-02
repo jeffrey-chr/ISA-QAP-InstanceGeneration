@@ -1,5 +1,7 @@
 # Instances generated - put them in the Instances submodule to be used later
 *.dat
+*.csv
+*.sln
 
 # Config text file
 linkdir.txt

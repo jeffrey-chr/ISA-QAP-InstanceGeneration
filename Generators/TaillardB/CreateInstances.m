@@ -25,7 +25,7 @@ infproxy1 = @(base, n) base * 2 * n + randi(floor(base)/2);
 %infproxy1 = @(base, n) base * 4 + randi(floor(base)/2);
 randdens1 = @(n) floor(randi(n) + n/2);
 
-repeats = 2;
+repeats = 3;
 
 req1 = struct;
 req1.name = "xtab%dN%d";
@@ -54,11 +54,12 @@ for i = 1:length(reqs)
         param.mu = rand*90+10;
         param.tilt = param.tilt * (rand * 2 + 1);
         param.A = rand*-15;
-        dist = genDistTaiB(param);
+        [dist,xy] = genDistTaiB(param);
         flow = genFlowTaiB(param);
         name = sprintf(req.name,n,req.id(count));
         qap_writeFile(strcat(outputDir,name,".dat"),dist,flow);
-
+        xstring = sprintf('%f,',xy(:,1));
+        ystring = sprintf('%f,',xy(:,2));
         description = strcat("InstanceType,TaiBGenerator\nInstanceSize,",num2str(n), ...
             "\nOverallRadius,",num2str(param.M,10), ...
             "\nMaximumCluster,",num2str(param.K,10), ...
@@ -66,6 +67,8 @@ for i = 1:length(reqs)
             "\nTilt,",num2str(param.tilt,10), ...
             "\nFlowBParam,", num2str(param.B,10), ...
             "\nFlowAParam,", num2str(param.A,10), ...
+            "\nXCoords,", extractBefore(xstring, length(xstring)), ...
+            "\nYCoords,", extractBefore(ystring, length(ystring)), ...
             "\n");
         fid = fopen(strcat(descDir,name,".csv"),'w');
         fprintf(fid, description);
