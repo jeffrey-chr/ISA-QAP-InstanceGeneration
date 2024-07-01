@@ -34,7 +34,7 @@ for i = 1:length(instSizes)
         rho_bound = 50;
         m_lower = 3;
         m_upper = 19;
-        [dist, flow, optvalue, optperm] = generateInstance(n, nx, ny, h, w, rho_bound, m_lower, m_upper);
+        [dist, flow, optvalue, optperm] = generatePaluInstance(n, nx, ny, h, w, rho_bound, m_lower, m_upper);
         name = strcat('xPalu',num2str(n),'_',num2str(count));
         qap_writeFile(strcat(outputDir,name,".dat"),dist,flow);
     end

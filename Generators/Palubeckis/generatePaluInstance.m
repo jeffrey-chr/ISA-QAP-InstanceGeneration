@@ -1,4 +1,4 @@
-function [dist,flow,optvalue,optperm] = generateInstance(n, nx, ny, h, w, rho_bound, m_lower, m_upper)
+function [dist,flow,optvalue,optperm] = generatePaluInstance(n, nx, ny, h, w, rho_bound, m_lower, m_upper)
 %GENERATEINSTANCE Summary of this function goes here
 %   Detailed explanation goes here
 
